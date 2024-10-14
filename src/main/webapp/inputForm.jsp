@@ -1,57 +1,46 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+
 <form id="main" onsubmit="saveArticle(event)" action="${pageContext.request.contextPath}/controller-servlet" method="get">
 <table>
-    <jsp:include page="inputForm.jsp" />
     <tr>
         <td>
             <p><i>Выберите X:</i></p>
             <p>
                 <label>
-                    <input type="radio" name="x" value="-3">
-                    -3
-                </label>
-
-                <label>
-                    <input type="radio" name="x" value="-2">
+                    <input type="radio"  name="x" value="-2">
                     -2
                 </label>
-
+                <label>
+                    <input type="radio" name="x" value="-1.5">
+                    -1.5
+                </label>
                 <label>
                     <input type="radio" name="x" value="-1">
                     -1
                 </label>
-
+                <label>
+                    <input type="radio" name="x" value="-0.5">
+                    -0.5
+                </label>
                 <label>
                     <input type="radio" name="x" value="0">
                     0
                 </label>
                 <label>
+                    <input type="radio" name="x" value="0.5">
+                    0.5
+                </label>
+                <label>
                     <input type="radio" name="x" value="1">
                     1
                 </label>
-
+                <label>
+                    <input type="radio" name="x" value="1.5">
+                    1.5
+                </label>
                 <label>
                     <input type="radio" name="x" value="2">
                     2
-                </label>
-
-                <label>
-                    <input type="radio" name="x" value="3">
-                    3
-                </label>
-
-                <label>
-                    <input type="radio" name="x" value="4">
-                    4
-                </label>
-                <label>
-                    <input type="radio" name="x" value="5">
-                    5
                 </label>
             </p>
         </td>
@@ -100,5 +89,3 @@
 
 </table>
 </form>
-</body>
-</html>

@@ -1,5 +1,7 @@
 package labs.servlets;
 
+import jakarta.servlet.ServletContext;
+import labs.utils.Point;
 import labs.utils.Validator;
 
 import jakarta.servlet.ServletException;
@@ -8,12 +10,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 @WebServlet("/area-servlet")
 public class AreaCheckServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServletContext context = getServletContext();
+
         try {
             float x = Float.parseFloat(request.getParameter("x").replace(",", "."));
             float y = Float.parseFloat(request.getParameter("y").replace(",", "."));
@@ -26,12 +31,22 @@ public class AreaCheckServlet extends HttpServlet {
 
             Validator validator = new Validator();
             boolean isValid = validator.validateParams(params);
+            boolean isHit = validator.isHit(params);
             if (!isValid){
-                //пшел нах
-            }
-            else{
+                Point point = new Point(x, y, r, isHit);
 
+                Object points = context.getAttribute("results");
+                ArrayList<Point> results = new ArrayList<Point>();
+                if (points != null) {
+                    results.addAll((ArrayList<Point>)points);
+                }
+
+                results.add(point);
+
+                context.setAttribute("results", results);
+                request.setAttribute("new_point", point);
             }
+
 
         } catch (Error e) {
 

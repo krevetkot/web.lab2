@@ -38,11 +38,7 @@ body {
 
 
 /*селектор атрибута*/
-img[src="style/area.png"] {
-    vertical-align: top;
-    width: 250px;
-    height: 250px;
-}
+
 
 
 #history {

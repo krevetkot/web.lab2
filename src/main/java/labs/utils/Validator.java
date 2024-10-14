@@ -23,15 +23,15 @@ public class Validator {
 
     private boolean validateX(float x) {
         List<Float> xValues = new ArrayList<>(9);
-        xValues.add(-3f);
         xValues.add(-2f);
+        xValues.add(-1.5f);
         xValues.add(-1f);
+        xValues.add(-0.5f);
         xValues.add(0f);
+        xValues.add(0.5f);
         xValues.add(1f);
+        xValues.add(1.5f);
         xValues.add(2f);
-        xValues.add(3f);
-        xValues.add(4f);
-        xValues.add(5f);
         return xValues.contains(x);
     }
 

@@ -8,6 +8,7 @@
     <link href="style/style.css" rel="stylesheet" type="text/css"/>
     <link rel="icon" href="style/favicon.png" type="image/x-icon">
     <script defer type="text/javascript" src="main.js"></script>
+    <script defer type="text/javascript" src="area.js"></script>
 
     <meta http-equiv="Content-Type" content="test/html; charset=utf-8">
     <title> Веб лаб 1 </title>
