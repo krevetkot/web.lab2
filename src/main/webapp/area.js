@@ -1,9 +1,43 @@
 window.addEventListener('load', drawArea(0));
 
-const SCALE_FACTOR = 100
+
+function onClickFunction() {
+    const canvas = document.getElementById("area");
+    const rect = canvas.getBoundingClientRect();
+    const xDom = event.clientX - rect.left - canvas.width / 2;
+    const yDom = canvas.height / 2 - (event.clientY - rect.top);
+
+    try {
+        let mainForm = document.getElementById('main');
+        let formData = new FormData(mainForm);
+        const values = Object.fromEntries(formData);
+        const r = parseFloat(values.r);
+        const x = xDom * ((4 * r) / canvas.width);
+        const y = yDom * ((4 * r) / canvas.height);
+
+        values.x = x;
+        values.y = y;
+
+        try {
+            validation(values);
+        } catch (e) {
+            alert(e.message);
+            return;
+        }
+
+        mainForm["x"].value = Math.round(x/r);
+        mainForm["y"].value = y/r;
+        mainForm["r"].value = r;
+
+        mainForm.submit();
+    } catch (e) {
+        alert(e.message);
+    }
+}
+
 
 function drawArea(R) {
-    koef = 125
+    let koef = 125
     const canvas = document.getElementById("area");
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);

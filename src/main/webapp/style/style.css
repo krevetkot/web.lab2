@@ -29,6 +29,10 @@ td, th {
     table-layout: fixed;
 }
 
+#tries td{
+    align-content: center;
+}
+
 /*селектор элемента*/
 body {
     background-image: url('bg.jpg');

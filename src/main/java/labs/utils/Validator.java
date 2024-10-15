@@ -18,22 +18,22 @@ public class Validator {
     }
 
     public boolean validateParams(LinkedHashMap<String, Float> params) {
-        return validateX(params.get("x")) && validateY(params.get("y")) && validateR(params.get("r"));
+        return validateY(params.get("y")) && validateR(params.get("r"));
     }
 
-    private boolean validateX(float x) {
-        List<Float> xValues = new ArrayList<>(9);
-        xValues.add(-2f);
-        xValues.add(-1.5f);
-        xValues.add(-1f);
-        xValues.add(-0.5f);
-        xValues.add(0f);
-        xValues.add(0.5f);
-        xValues.add(1f);
-        xValues.add(1.5f);
-        xValues.add(2f);
-        return xValues.contains(x);
-    }
+//    private boolean validateX(float x) {
+//        List<Float> xValues = new ArrayList<>(9);
+//        xValues.add(-2f);
+//        xValues.add(-1.5f);
+//        xValues.add(-1f);
+//        xValues.add(-0.5f);
+//        xValues.add(0f);
+//        xValues.add(0.5f);
+//        xValues.add(1f);
+//        xValues.add(1.5f);
+//        xValues.add(2f);
+//        return xValues.contains(x);
+//    }
 
     private boolean validateY(float y) {
         return (y < 3 && y > -5);

@@ -45,4 +45,18 @@
     </tr>
 </table>
 </body>
+<script>
+    window.onload = function() {
+        <% Object par = request.getAttribute("new_point"); %>
+        <% if (par != null) {%>
+        <% Point newPoint = (Point) param; assert newPoint != null;%>
+        addPointToSavedTable(
+            <%= newPoint.getX() %>,
+            <%= newPoint.getY() %>,
+            <%= newPoint.getR() %>,
+            <%= newPoint.getIsHit() %>
+        );
+        <% } %>
+    }
+</script>
 </html>

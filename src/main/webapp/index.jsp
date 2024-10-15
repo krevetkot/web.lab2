@@ -1,3 +1,4 @@
+<%--<jsp:useBean id="results" scope="request"/>--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="labs.utils.Point" %>
@@ -114,10 +115,9 @@
                 </form>
             </td>
             <td rowspan=4 id="tdWithArea">
-                <canvas id="area" width="350" height="350"></canvas>
+                <canvas id="area" width="350" height="350" ></canvas>
             </td>
             <td rowspan=100 id="history">
-                <%@ page import="labs.utils.Point" %>
                 <p><i>История:</i></p>
                 <table id="tries">
                     <tr>
@@ -125,28 +125,8 @@
                         <th>X</th>
                         <th>Y</th>
                         <th>R</th>
-                            <% if (application.getContext("results") != null) { %>
-                            <% ArrayList<Point> array = (ArrayList<Point>) application.getContext("results");%>
-                            <% for (int index = array.size() - 1; index >= 0; index--) { %>
-                        <div><%= array.get(index).getX() %></div>
-                        <div><%= array.get(index).getY() %></div>
-                        <div><%= array.get(index).getR() %></div>
-                        <div><%= array.get(index).getIsHit() ? "<span style='color:green'>Да</span>" : "<span style='color:red'>Нет</span>" %></div>
-                            <% } %>
-                            <% } %>
-
-                            <% Object param = request.getAttribute("new_point"); %>
-                            <% if (param != null) { %>
-                            <% Point newPoint = (Point) param; %>
-                    <tr>
-                        <td align="center"><%= newPoint.getIsHit() ? "YES" : "NO"  %></td>
-                        <td align="center"><%= newPoint.getX() %></td>
-                        <td align="center"><%= newPoint.getY() %></td>
-                        <td align="center"><%= newPoint.getR() %></td>
-                    </tr>
-                            <% } %>
                 </table>
-            </>
+            </td>
         </tr>
     </table>
 <%--<script>--%>
