@@ -115,7 +115,7 @@
                 </form>
             </td>
             <td rowspan=4 id="tdWithArea">
-                <canvas id="area" width="350" height="350" ></canvas>
+                <canvas id="area" width="350" height="350" onclick="onClickFunction(event)"></canvas>
             </td>
             <td rowspan=100 id="history">
                 <p><i>История:</i></p>

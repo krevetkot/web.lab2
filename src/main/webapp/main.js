@@ -16,7 +16,7 @@ function validation(values) {
         throw new InvalidValueException('You didn\'t choose Y');
     } else {
         var floaty = parseFloat(values.y);
-        if (!/^(-?\d+(\.\d+)?)$/.test(values.y.trim())) {
+        if (!/^(-?\d+(\.\d+)?)$/.test(values.y)) {
             throw new InvalidValueException('Y must be the number');
         }
         if (floaty <= -5 || floaty >= 3) {

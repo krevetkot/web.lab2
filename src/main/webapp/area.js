@@ -25,8 +25,9 @@ function onClickFunction() {
             return;
         }
 
-        mainForm["x"].value = Math.round(x/r);
-        mainForm["y"].value = y/r;
+        // mainForm["x"].value = Math.round(x/r);
+        mainForm["x"].value = 0;
+        mainForm["y"].value = (y/r).toFixed(4);
         mainForm["r"].value = r;
 
         mainForm.submit();
