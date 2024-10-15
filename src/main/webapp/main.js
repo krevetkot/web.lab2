@@ -114,8 +114,61 @@ function saveArticle(event) {
 
 window.addEventListener('load', onloadFunction());
 
-function onloadFunction() {
+function addPointToSavedTable(x, y, r, res) {
+    localStorage.setItem('savedLastTries', JSON.stringify(tableToJson(document.getElementById('tries'))));
 
+
+    let savedMas = JSON.parse(localStorage.getItem('savedLastTries'));
+    if (savedMas) {
+        let tempTable = document.createElement("table");
+        var lastTries = document.getElementById('tries');
+        for (var i = 0; i < savedMas.length; i++) {
+            const newRow = tempTable.insertRow(-1);
+            const resCell = newRow.insertCell(0);
+            const xCell = newRow.insertCell(1);
+            const yCell = newRow.insertCell(2);
+            const rCell = newRow.insertCell(3);
+
+            resCell.textContent = savedMas[i][0];
+            xCell.textContent = savedMas[i][1];
+            yCell.textContent = savedMas[i][2];
+            rCell.textContent = savedMas[i][3];
+        }
+        const newRow = tempTable.insertRow(-1);
+        const resCell = newRow.insertCell(0);
+        const xCell = newRow.insertCell(1);
+        const yCell = newRow.insertCell(2);
+        const rCell = newRow.insertCell(3);
+
+        resCell.textContent = res;
+        xCell.textContent = x;
+        yCell.textContent = y;
+        rCell.textContent = r;
+
+        localStorage.setItem('savedLastTries', JSON.stringify(tableToJson(tempTable)));
+    }
+
+}
+
+function onloadFunction() {
+     let savedMas = JSON.parse(localStorage.getItem('savedLastTries'));
+    if (savedMas) {
+
+        var lastTries = document.getElementById('tries');
+        for (var i = 0; i < savedMas.length; i++) {
+            const newRow = lastTries.insertRow(-1);
+            const resCell = newRow.insertCell(0);
+            const xCell = newRow.insertCell(1);
+            const yCell = newRow.insertCell(2);
+            const rCell = newRow.insertCell(3);
+
+            resCell.textContent = savedMas[i][0];
+            xCell.textContent = savedMas[i][1];
+            yCell.textContent = savedMas[i][2];
+            rCell.textContent = savedMas[i][3];
+        }
+        return null;
+    }
 }
 
 function tableToJson(table) {

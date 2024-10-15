@@ -125,29 +125,46 @@
                         <th>X</th>
                         <th>Y</th>
                         <th>R</th>
-<%--                            <% if (getServletContext().getAttribute("rows") != null) { %>--%>
-<%--                            <% ArrayList<Point> array = (ArrayList<Point>) getServletContext().getAttribute("rows");%>--%>
-<%--                            <% for (int index = array.size() - 1; index >= 0; index--) { %>--%>
-<%--                        <div><%= array.get(index).getX() %></div>--%>
-<%--                        <div><%= array.get(index).getY() %></div>--%>
-<%--                        <div><%= array.get(index).getR() %></div>--%>
-<%--                        <div><%= array.get(index).getIsHit() ? "<span style='color:green'>Да</span>" : "<span style='color:red'>Нет</span>" %></div>--%>
-<%--                            <% } %>--%>
-<%--                            <% } %>--%>
+                            <% if (application.getContext("results") != null) { %>
+                            <% ArrayList<Point> array = (ArrayList<Point>) application.getContext("results");%>
+                            <% for (int index = array.size() - 1; index >= 0; index--) { %>
+                        <div><%= array.get(index).getX() %></div>
+                        <div><%= array.get(index).getY() %></div>
+                        <div><%= array.get(index).getR() %></div>
+                        <div><%= array.get(index).getIsHit() ? "<span style='color:green'>Да</span>" : "<span style='color:red'>Нет</span>" %></div>
+                            <% } %>
+                            <% } %>
 
-<%--                            <% Object param = request.getAttribute("new_row"); %>--%>
-<%--                            <% if (param != null) { %>--%>
-<%--                            <% Point newRow = (Point) param; %>--%>
-<%--                    <tr>--%>
-<%--                        <td><%= newRow.getX() %></td>--%>
-<%--                        <td><%= newRow.getY() %></td>--%>
-<%--                        <td><%= newRow.getR() %></td>--%>
-<%--                        <td><%= newRow.getIsHit() ? "YES" : "NO" %></td>--%>
-<%--                    </tr>--%>
-<%--                    <% } %>--%>
+                            <% Object param = request.getAttribute("new_point"); %>
+                            <% if (param != null) { %>
+                            <% Point newPoint = (Point) param; %>
+                    <tr>
+                        <td align="center"><%= newPoint.getIsHit() ? "YES" : "NO"  %></td>
+                        <td align="center"><%= newPoint.getX() %></td>
+                        <td align="center"><%= newPoint.getY() %></td>
+                        <td align="center"><%= newPoint.getR() %></td>
+                    </tr>
+                            <% } %>
                 </table>
             </>
         </tr>
     </table>
+<%--<script>--%>
+<%--     window.onload = function() {--%>
+<%--         loadData();--%>
+<%--        <% if (application.getContext("results") != null) { %>--%>
+<%--        <% ArrayList<Point> array = (ArrayList<Point>) application.getContext("results");%>--%>
+<%--        <% for (int index = array.size() - 1; index >= 0; index--) { %>--%>
+        <%--drawPoint(--%>
+        <%--    <%= array.get(index).getIsHit() %>,--%>
+        <%--    <%= array.get(index).getX() %>,--%>
+        <%--    <%= array.get(index).getY() %>,--%>
+        <%--    <%= array.get(index).getR() %>--%>
+        <%--);--%>
+<%--        <% } %>--%>
+<%--        <% } %>--%>
+<%--    }--%>
+
+<%--</script>--%>
 </body>
 </html>

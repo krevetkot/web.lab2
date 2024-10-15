@@ -36,7 +36,7 @@
                     <td align="center"><%= newPoint.getY() %></td>
                     <td align="center"><%= newPoint.getR() %></td>
                 </tr>
-                <% } %>
+                        <% } %>
                 <tr>
                     <a href="/weblab2/">Попробовать еще раз</a>
                 </tr>
