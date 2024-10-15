@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-@WebServlet("/area-servlet")
+@WebServlet("/area-check-servlet")
 public class AreaCheckServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,11 +28,11 @@ public class AreaCheckServlet extends HttpServlet {
             params.put("y", y);
             params.put("r", r);
 
-
             Validator validator = new Validator();
             boolean isValid = validator.validateParams(params);
             boolean isHit = validator.isHit(params);
-            if (!isValid){
+
+            if (isValid){
                 Point point = new Point(x, y, r, isHit);
 
                 Object points = context.getAttribute("results");
@@ -45,7 +45,12 @@ public class AreaCheckServlet extends HttpServlet {
 
                 context.setAttribute("results", results);
                 request.setAttribute("new_point", point);
+            } else {
+                response.getWriter().write("validation error!");
+                return;
             }
+
+            request.getRequestDispatcher("./tableRes.jsp").forward(request, response);
 
 
         } catch (Error e) {

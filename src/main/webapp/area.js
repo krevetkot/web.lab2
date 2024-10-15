@@ -1,7 +1,9 @@
-window.addEventListener('load', drawArea([], 1));
+window.addEventListener('load', drawArea(0));
 
-function drawArea(points, R) {
-    R = R*100
+const SCALE_FACTOR = 100
+
+function drawArea(R) {
+    koef = 125
     const canvas = document.getElementById("area");
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -15,17 +17,17 @@ function drawArea(points, R) {
 
     // Top left triangle
     ctx.moveTo(0, 0);
-    ctx.lineTo(0, R);
-    ctx.lineTo(-R, 0);
+    ctx.lineTo(0, koef);
+    ctx.lineTo(-koef, 0);
 
     // Top right rectangle
     ctx.moveTo(0, 0);
-    ctx.lineTo(0, R);
-    ctx.lineTo(R/2, R);
-    ctx.lineTo(R/2, 0);
+    ctx.lineTo(0, koef);
+    ctx.lineTo(koef/2, koef);
+    ctx.lineTo(koef/2, 0);
 
     // Bottom left circle
-    ctx.arc(0, 0, R / 2, Math.PI, 3*Math.PI/2, false);
+    ctx.arc(0, 0, koef / 2, Math.PI, 3*Math.PI/2, false);
     ctx.closePath();
     ctx.fill();
 
@@ -40,26 +42,39 @@ function drawArea(points, R) {
 
     ctx.fillStyle = "white";
 
-    points.forEach((point) => {
-        const {x, y} = point;
-
-        ctx.beginPath();
-        ctx.arc(x * SCALE_FACTOR, y * SCALE_FACTOR, 5, 0, Math.PI * 2);
-        ctx.fill();
-    });
+    // points.forEach((point) => {
+    //     const {x, y} = point;
+    //
+    //     ctx.beginPath();
+    //     ctx.arc(x * SCALE_FACTOR, y * SCALE_FACTOR, 5, 0, Math.PI * 2);
+    //     ctx.fill();
+    // });
 
     ctx.scale(1, -1);
     ctx.fillStyle = "black";
     ctx.font = "12px monospace";
-    ctx.fillText("R", R, -6);
-    ctx.fillText("R/2", R / 2, -6);
-    ctx.fillText("-R/2", -R / 2, -6);
-    ctx.fillText("-R", -R, -6);
+    if (R===0){
+        ctx.fillText("R", koef, -6);
+        ctx.fillText("R/2", koef / 2, -6);
+        ctx.fillText("-R/2", -koef / 2, -6);
+        ctx.fillText("-R", -koef, -6);
 
-    ctx.fillText("R", 6, -R);
-    ctx.fillText("R/2", 6, -R / 2);
-    ctx.fillText("-R/2", 6, R / 2);
-    ctx.fillText("-R", 6, R);
+        ctx.fillText("R", 6, -koef);
+        ctx.fillText("R/2", 6, -koef / 2);
+        ctx.fillText("-R/2", 6, koef / 2);
+        ctx.fillText("-R", 6, koef);
+    }
+    else{
+        ctx.fillText((R).toString(), koef, -6);
+        ctx.fillText((R/2).toString(), koef / 2, -6);
+        ctx.fillText((-R/2).toString(), -koef / 2, -6);
+        ctx.fillText((-R).toString(), -koef, -6);
+
+        ctx.fillText((R).toString(), 6, -koef);
+        ctx.fillText((R/2).toString(), 6, -koef / 2);
+        ctx.fillText((-R/2).toString(), 6, koef / 2);
+        ctx.fillText((-R).toString(), 6, koef);
+    }
 
     ctx.translate(-canvas.width / 2, -canvas.height / 2);
     return null;

@@ -25,6 +25,31 @@ function validation(values) {
     }
 }
 
+function sendRequest(event) {
+    let mainForm = document.getElementById('main');
+    let formData = new FormData(mainForm);
+    const values = Object.fromEntries(formData);
+
+    try {
+        validation(values);
+    } catch (e) {
+        alert(e.message);
+        return;
+    }
+
+    event.preventDefault();
+    $.ajax({
+        url: "/weblab2/controller-servlet?" +  new URLSearchParams(formData).toString(),
+        method: "GET",
+        // data: formData,
+        // processData: false,
+        // contentType: false,
+        success: function(data) {
+            $('#history').html(data);
+            //return data;
+        }
+    });
+}
 
 function saveArticle(event) {
     event.preventDefault();
@@ -90,28 +115,7 @@ function saveArticle(event) {
 window.addEventListener('load', onloadFunction());
 
 function onloadFunction() {
-    let savedMas = JSON.parse(localStorage.getItem('savedLastTries'));
-    if (savedMas) {
 
-        var lastTries = document.getElementById('tries');
-        for (var i = 0; i < savedMas.length; i++) {
-            const newRow = lastTries.insertRow(-1);
-            const resCell = newRow.insertCell(0)
-            const xCell = newRow.insertCell(1);
-            const yCell = newRow.insertCell(2);
-            const rCell = newRow.insertCell(3);
-            const timeCell = newRow.insertCell(4);
-            const scriptCell = newRow.insertCell(5);
-
-            resCell.textContent = savedMas[i][0];
-            xCell.textContent = savedMas[i][1];
-            yCell.textContent = savedMas[i][2];
-            rCell.textContent = savedMas[i][3];
-            timeCell.textContent = savedMas[i][4];
-            scriptCell.textContent = savedMas[i][5];
-        }
-        return null;
-    }
 }
 
 function tableToJson(table) {
