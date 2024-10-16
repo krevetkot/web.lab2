@@ -41,13 +41,6 @@ function sendRequest(event) {
     $.ajax({
         url: "/weblab2/controller-servlet?" +  new URLSearchParams(formData).toString(),
         method: "GET",
-        // data: formData,
-        // processData: false,
-        // contentType: false,
-        success: function(data) {
-            $('#history').html(data);
-            //return data;
-        }
     });
 }
 

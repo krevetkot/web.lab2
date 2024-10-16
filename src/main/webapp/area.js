@@ -120,7 +120,10 @@ function drawArea(R) {
 }
 
 function drawPoint(ctx, isHit, x, y, r){
-    SCALE_FACTOR = 125/(r);
+    if (r ===0 || x==='undefined' || x==='null' || x===''){
+        return;
+    }
+    let SCALE_FACTOR = 125 / (r);
     ctx.beginPath();
     ctx.arc(x * SCALE_FACTOR, y * SCALE_FACTOR, 5, 0, Math.PI * 2);
     if (isHit==='true' || isHit==='YES'){

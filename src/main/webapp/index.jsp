@@ -1,7 +1,7 @@
 <%--<jsp:useBean id="results" scope="request"/>--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="labs.utils.Point" %>
+<%--<%@ page import="java.util.ArrayList" %>--%>
+<%--<%@ page import="labs.utils.Point" %>--%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <td>
-                <form id="main" action="${pageContext.request.contextPath}/controller-servlet" method="get">
+                <form id="main" onsubmit="sendRequest(event)" method="get">
                     <table>
                         <tr>
                             <td>
