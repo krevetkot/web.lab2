@@ -12,11 +12,11 @@ function onClickFunction() {
         let formData = new FormData(mainForm);
         const values = Object.fromEntries(formData);
         const r = parseFloat(values.r);
-        const x = xDom * ((4 * r) / canvas.width);
-        const y = yDom * ((4 * r) / canvas.height);
+        const x = xDom * (4 / canvas.width);
+        const y = yDom * (4 / canvas.height);
 
         values.x = x;
-        values.y = y;
+        values.y = y/2;
 
         try {
             validation(values);
@@ -28,11 +28,11 @@ function onClickFunction() {
         // mainForm["x"].value = Math.round(x/r);
 
         const otherX = document.getElementById("otherX");
-        otherX.value = (x).toFixed(4).toString();
+        otherX.value = (x/2*r).toFixed(4).toString();
         otherX.disabled = false;
         otherX.click();
 
-        mainForm["y"].value = (y).toFixed(4);
+        mainForm["y"].value = (y/2*r).toFixed(4);
         mainForm["r"].value = r;
 
         mainForm.submit();
@@ -133,7 +133,7 @@ function drawPoint(ctx, isHit, x, y, r){
     if (r ===0 || x==='undefined' || x==='null' || x===''){
         return;
     }
-    let SCALE_FACTOR = 75/r;
+    let SCALE_FACTOR = 125/r;
     ctx.beginPath();
     ctx.arc(x * SCALE_FACTOR, y * SCALE_FACTOR, 5, 0, Math.PI * 2);
     if (isHit==='true' || isHit==='YES' || isHit===true){
