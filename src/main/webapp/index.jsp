@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <td>
-                <form id="main" onsubmit="sendRequest(event)" method="get">
+                <form id="main" action="/weblab2/controller-servlet" method="get">
                     <table>
                         <tr>
                             <td>
