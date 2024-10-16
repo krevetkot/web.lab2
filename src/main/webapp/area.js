@@ -28,11 +28,11 @@ function onClickFunction() {
         // mainForm["x"].value = Math.round(x/r);
 
         const otherX = document.getElementById("otherX");
-        otherX.value = x.toFixed(4).toString();
+        otherX.value = (x).toFixed(4).toString();
         otherX.disabled = false;
         otherX.click();
 
-        mainForm["y"].value = (y/r).toFixed(4);
+        mainForm["y"].value = (y).toFixed(4);
         mainForm["r"].value = r;
 
         mainForm.submit();
@@ -41,6 +41,13 @@ function onClickFunction() {
     }
 }
 
+function isItHit(x, y, r){
+    x = parseFloat(x);
+    return ((x >= 0) && (x <= r/2) && (y >= 0) && (y <= r) || //in rectangle
+        (x <= 0) && (y <= x + r) && (y >= 0) || //in triangle
+        (x * x + y * y <= (r/2) * (r/2)) && (x <= 0) && (y <= 0) //in circle
+    );
+}
 
 function drawArea(R) {
     let koef = 125
@@ -87,7 +94,8 @@ function drawArea(R) {
     var rows = table.querySelectorAll('tr');
     if (rows[1]!==undefined) {
         for (var i = 1; i < rows.length; i++) {
-            drawPoint(ctx, rows[i].cells[0].innerHTML, rows[i].cells[1].innerHTML, rows[i].cells[2].innerHTML, R);
+            drawPoint(ctx, isItHit(rows[i].cells[1].innerHTML, rows[i].cells[2].innerHTML, R),
+                rows[i].cells[1].innerHTML, rows[i].cells[2].innerHTML, R);
         }
     }
 
@@ -125,13 +133,13 @@ function drawPoint(ctx, isHit, x, y, r){
     if (r ===0 || x==='undefined' || x==='null' || x===''){
         return;
     }
-    let SCALE_FACTOR = 125 / (r);
+    let SCALE_FACTOR = 75/r;
     ctx.beginPath();
     ctx.arc(x * SCALE_FACTOR, y * SCALE_FACTOR, 5, 0, Math.PI * 2);
-    if (isHit==='true' || isHit==='YES'){
+    if (isHit==='true' || isHit==='YES' || isHit===true){
         ctx.fillStyle = "rgb(78,255,51)";
     }
-    else if (isHit==='false' || isHit==='NO'){
+    else if (isHit==='false' || isHit==='NO' || isHit===false){
         ctx.fillStyle = "rgb(255,51,51)";
     }
     ctx.fill();
