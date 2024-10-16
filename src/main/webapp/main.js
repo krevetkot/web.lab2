@@ -105,7 +105,7 @@ function sendRequest(event) {
 //         })
 // }
 
-window.addEventListener('load', onloadFunction());
+//window.addEventListener('load', onloadFunction());
 
 function addPointToSavedTable(x, y, r, res) {
     localStorage.setItem('savedLastTries', JSON.stringify(tableToJson(document.getElementById('tries'))));

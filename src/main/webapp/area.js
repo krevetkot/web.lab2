@@ -82,11 +82,13 @@ function drawArea(R) {
 
     ctx.fillStyle = "white";
 
-    const table = document.querySelector('#tries');
+    var table = document.querySelector('#tries');
 // получаем все строки таблицы
-    const rows = table.querySelectorAll('tr');
-    for (var i = 1; i < rows.length; i++){
-        drawPoint(ctx, rows[i].cells[0].innerHTML, rows[i].cells[1].innerHTML, rows[i].cells[2].innerHTML, R);
+    var rows = table.querySelectorAll('tr');
+    if (rows[1]!==undefined) {
+        for (var i = 1; i < rows.length; i++) {
+            drawPoint(ctx, rows[i].cells[0].innerHTML, rows[i].cells[1].innerHTML, rows[i].cells[2].innerHTML, R);
+        }
     }
 
     ctx.scale(1, -1);

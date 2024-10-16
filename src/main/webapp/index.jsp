@@ -1,7 +1,7 @@
-<%--<jsp:useBean id="results" scope="request"/>--%>
+<%@ page import="labs.utils.Point" %><%--<jsp:useBean id="results" scope="request"/>--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%--<%@ page import="java.util.ArrayList" %>--%>
-<%--<%@ page import="labs.utils.Point" %>--%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="labs.utils.Point" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
@@ -129,26 +129,23 @@
                         <th>X</th>
                         <th>Y</th>
                         <th>R</th>
+                    </tr>
+
+                        <% if (request.getServletContext().getAttribute("results") != null) { %>
+                        <% ArrayList<Point> array = (ArrayList<Point>) request.getServletContext().getAttribute("results");%>
+                        <% for (int index = array.size() - 1; index >= 0; index--) { %>
+                    <tr>
+                        <td><%= array.get(index).getIsHit() ? "YES" : "NO" %></td>
+                        <td><%= array.get(index).getX() %></td>
+                        <td><%= array.get(index).getY() %></td>
+                        <td><%= array.get(index).getR() %></td>
+                    </tr>
+                        <% } %>
+                        <% } %>
+
                 </table>
             </td>
         </tr>
     </table>
-<%--<script>--%>
-<%--     window.onload = function() {--%>
-<%--         loadData();--%>
-<%--        <% if (application.getContext("results") != null) { %>--%>
-<%--        <% ArrayList<Point> array = (ArrayList<Point>) application.getContext("results");%>--%>
-<%--        <% for (int index = array.size() - 1; index >= 0; index--) { %>--%>
-        <%--drawPoint(--%>
-        <%--    <%= array.get(index).getIsHit() %>,--%>
-        <%--    <%= array.get(index).getX() %>,--%>
-        <%--    <%= array.get(index).getY() %>,--%>
-        <%--    <%= array.get(index).getR() %>--%>
-        <%--);--%>
-<%--        <% } %>--%>
-<%--        <% } %>--%>
-<%--    }--%>
-
-<%--</script>--%>
 </body>
 </html>
