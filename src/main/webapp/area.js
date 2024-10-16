@@ -28,7 +28,7 @@ function onClickFunction() {
         // mainForm["x"].value = Math.round(x/r);
 
         const otherX = document.getElementById("otherX");
-        otherX.value = x.toString();
+        otherX.value = x.toFixed(4).toString();
         otherX.disabled = false;
         otherX.click();
 
@@ -82,13 +82,12 @@ function drawArea(R) {
 
     ctx.fillStyle = "white";
 
-    // points.forEach((point) => {
-    //     const {x, y} = point;
-    //
-    //     ctx.beginPath();
-    //     ctx.arc(x * SCALE_FACTOR, y * SCALE_FACTOR, 5, 0, Math.PI * 2);
-    //     ctx.fill();
-    // });
+    const table = document.querySelector('#tries');
+// получаем все строки таблицы
+    const rows = table.querySelectorAll('tr');
+    for (var i = 1; i < rows.length; i++){
+        drawPoint(ctx, rows[i].cells[0].innerHTML, rows[i].cells[1].innerHTML, rows[i].cells[2].innerHTML, R);
+    }
 
     ctx.scale(1, -1);
     ctx.fillStyle = "black";
@@ -118,4 +117,17 @@ function drawArea(R) {
 
     ctx.translate(-canvas.width / 2, -canvas.height / 2);
     return null;
+}
+
+function drawPoint(ctx, isHit, x, y, r){
+    SCALE_FACTOR = 125/(r);
+    ctx.beginPath();
+    ctx.arc(x * SCALE_FACTOR, y * SCALE_FACTOR, 5, 0, Math.PI * 2);
+    if (isHit==='true' || isHit==='YES'){
+        ctx.fillStyle = "rgb(78,255,51)";
+    }
+    else if (isHit==='false' || isHit==='NO'){
+        ctx.fillStyle = "rgb(255,51,51)";
+    }
+    ctx.fill();
 }
