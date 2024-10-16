@@ -57,3 +57,7 @@ body {
 p i {
     color: maroon;
 }
+
+#otherX, #labelWithOtherX{
+    visibility: hidden;
+}

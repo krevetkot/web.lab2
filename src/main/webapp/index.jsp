@@ -66,6 +66,10 @@
                                         <input type="radio" name="x" value="2">
                                         2
                                     </label>
+                                    <label id="labelWithOtherX">
+                                        <input type="radio" id="otherX" name="x" value="other" disabled>
+                                        other
+                                    </label>
                                 </p>
                             </td>
 

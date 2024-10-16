@@ -26,7 +26,12 @@ function onClickFunction() {
         }
 
         // mainForm["x"].value = Math.round(x/r);
-        mainForm["x"].value = 0;
+
+        const otherX = document.getElementById("otherX");
+        otherX.value = x.toString();
+        otherX.disabled = false;
+        otherX.click();
+
         mainForm["y"].value = (y/r).toFixed(4);
         mainForm["r"].value = r;
 
